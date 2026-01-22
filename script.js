@@ -36,7 +36,7 @@ async function displayWeatherInfo(city) {
     return await response.json();
 }
 
-function dispkayWeatherInfo(data) {
+function displayWeatherInfo(data) {
     const {name: city, 
             main: {temp, humidity, 
             weather: [{description, id}]}} = data;
