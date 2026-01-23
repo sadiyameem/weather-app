@@ -5,7 +5,7 @@ const apiKey = "84ead5e317160847a6c9161f86aaa94d";
 
 weatherForm.addEventListener("submit", async event => {
 
-    event.preventDefualt();
+    event.preventDefault();
 
     const city = cityInput.value;
 
@@ -25,21 +25,23 @@ weatherForm.addEventListener("submit", async event => {
 });
 
 
-async function displayWeatherInfo(city) {
+async function getWeatherData(city) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-
     const response = await fetch(apiUrl);
-
     if(!response.ok){
-        throw new Error("could not fetch weather data");
+        throw new Error("Could not fetch weather data");
     }
     return await response.json();
 }
 
 function displayWeatherInfo(data) {
-    const {name: city, 
-            main: {temp, humidity, 
-            weather: [{description, id}]}} = data;
+    if (!data || !data.weather || data.weather/length === 0) {
+        displayError("weather data not available");
+        return;
+    }
+    
+    const { name: city, main: { temp, humidity }, weather: [{ description, id}] } = data;
+
         card.textContent = "";
         card.style.display = "flex";
 
@@ -50,16 +52,16 @@ function displayWeatherInfo(data) {
         const weatherEmoji = document.createElement("p");
 
         cityDisplay.textContent = city;
-        tempDisplay.textContent = `${((temp - 273.15)) * (9/5).toFixed(1)}°F`;
+        tempDisplay.textContent = `${(((temp - 273.15)) * (9/5) + 32).toFixed(1)}°F`;
         humidityDisplay.textContent = `Humidity: ${humidity}%`;
         descDisplay.textContent = description;
-        weatherEmoji.textContent = weatherEmoji(id);
+        weatherEmoji.textContent = getWeatherEmoji(id);
 
         cityDisplay.classList.add("cityDisplay");
-        tempDisplay.classList.classList.add(tempDisplay);
+        tempDisplay.classList.add("tempDisplay");
         humidityDisplay.classList.add("humidityDisplay");
         descDisplay.classList.add("descDisplay");
-        weatherEmoji.classList.add(weatherEmoji);
+        weatherEmoji.classList.add("weatherEmoji");
 
         card.appendChild(cityDisplay);
         card.appendChild(tempDisplay);
