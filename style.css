@@ -22,17 +22,17 @@ button[type="submit"] {
     padding: 10px 20px;
     font-weight: bold;
     font-size: 2rem;
-    background-color: #4eb151;
+    background-color: #e6957a;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 button[type="submit"]:hover {
-    background-color: #3e8e41;
+    background-color: #cc7a61;
 }
 .card {
-    background: linear-gradient(180deg, rgb(128, 191, 255), rgb(255, 212, 128));
+    background: linear-gradient(180deg, #ffecd2, #fcb69f);
     padding: 50px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px #010101;
