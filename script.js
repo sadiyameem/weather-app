@@ -35,7 +35,7 @@ async function getWeatherData(city) {
 }
 
 function displayWeatherInfo(data) {
-    if (!data || !data.weather || data.weather/length === 0) {
+    if (!data || !data.weather || data.weather.length === 0) {
         displayError("weather data not available");
         return;
     }
@@ -104,4 +104,29 @@ function displayError(message){
     card.textContent = "";
     card.style.display = "flex";
     card.appendChild(errorDisplay);
+}
+
+function createWeatherEffects(condition){
+    const effects = $('#weather-effects');
+    effects.empty();
+    const particle = {
+        'Clear':['sun', 3],
+        'Clouds':['cloud', 4],
+        'Rain':['tint', 20],
+        'Thunderstorm': ['bolt', 8],
+        'Snow': ['snowflake', 15]
+    };
+
+    const[icon, count] = particle[condition] || ['sun', 3];
+
+    for(let i =0; i<count; i++){
+        const particleEl = $('<i>').addClass(`fas fa-${icon} weather-particle`);
+        particleEl.css({
+            left: Math.random() * 100 + '%',
+            top: Math.random() * 100 + '%',
+            fontSize: Math.random() *20 + 10 + 'px',
+            animationDelay: Math.random() *5 + 's'
+        });
+        effects.append(particleEl)
+    }
 }
