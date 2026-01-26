@@ -55,8 +55,7 @@ function displayWeatherInfo(data) {
         cityDisplay.textContent = city;
         tempDisplay.textContent = `${(((temp - 273.15)) * (9/5) + 32).toFixed(1)}°F`;
         humidityDisplay.textContent = `Humidity: ${humidity}%`;
-        const windMph = (speed * 2.237).toFixed(1);
-        windDisplay.textContent = `Wind: ${windMph} mph`;
+        const windMph = (speed * 2.237).toFixed(1); windDisplay.textContent = `Wind: ${windMph} mph`;
         descDisplay.textContent = description;
         weatherEmoji.textContent = getWeatherEmoji(id);
 
