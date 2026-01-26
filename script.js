@@ -40,7 +40,7 @@ function displayWeatherInfo(data) {
         return;
     }
     
-    const { name: city, main: { temp, humidity }, weather: [{ description, id}] } = data;
+    const { name: city, main: { temp, humidity }, weather: [{ description, id}], wind: {speed} } = data;
 
         card.textContent = "";
         card.style.display = "flex";
@@ -48,26 +48,31 @@ function displayWeatherInfo(data) {
         const cityDisplay = document.createElement("h1");
         const tempDisplay = document.createElement("p");
         const humidityDisplay = document.createElement("p");
+        const windDisplay = document.createElement("p");
         const descDisplay = document.createElement("p");
         const weatherEmoji = document.createElement("p");
 
         cityDisplay.textContent = city;
         tempDisplay.textContent = `${(((temp - 273.15)) * (9/5) + 32).toFixed(1)}°F`;
         humidityDisplay.textContent = `Humidity: ${humidity}%`;
+        const windMph = (speed * 2.237).toFixed(1);
+        windDisplay.textContent = `Wind: ${windMph} mph`;
         descDisplay.textContent = description;
         weatherEmoji.textContent = getWeatherEmoji(id);
 
         cityDisplay.classList.add("cityDisplay");
         tempDisplay.classList.add("tempDisplay");
         humidityDisplay.classList.add("humidityDisplay");
+        windDisplay.classList.add("windDisplay");
         descDisplay.classList.add("descDisplay");
         weatherEmoji.classList.add("weatherEmoji");
 
         card.appendChild(cityDisplay);
         card.appendChild(tempDisplay);
         card.appendChild(humidityDisplay);
+        card.appendChild(windDisplay);
         card.appendChild(descDisplay);
-        card.appendChild(weatherEmoji)
+        card.appendChild(weatherEmoji);
 }
 
 function getWeatherEmoji(weatherId){
