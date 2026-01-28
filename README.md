@@ -1,4 +1,4 @@
-# weather-app
+# Weather-app
 
 # Description
 - This is a simple web-based app where you can see the weather in any city.
