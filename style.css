@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #fde2d9;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -13,6 +13,14 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: -1;
+}
+
+.title {
+    margin-top: 10px;
+}
+
+.subtitle {
+    margin-bottom: 1px;
 }
 
 .weather-particles {
@@ -30,7 +38,7 @@ body {
 }
 .cityInput {
     padding: 10px;
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: bold;
     border: 2px solid #3333334d;
     border-radius: 10px;
@@ -41,7 +49,7 @@ body {
 button[type="submit"] {
     padding: 10px 20px;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.2rem;
     background-color: #e6957a;
     color: white;
     border: none;
